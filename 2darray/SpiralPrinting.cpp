@@ -1,31 +1,53 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
-void PrintSpiralArray(int array[][10] , int row , int col){
-    int count = row * col;
-    int startRow = 0;
-    int startCol = 0;
-    int endRow = row - 1;
-    int endCol = col - 1;
+vector<int> SpiralArray(vector<vector<int>>& matrix){
+        vector<int>result;
+        int count = matrix.size()* matrix[0].size();
+        int startrow = 0;
+        int startcol = 0;
+        int endrow = matrix.size() - 1;
+        int endcol = matrix[0].size() - 1;
 
-     //while(count > 1){
-        //Print Starting  row 
-        for(int j = startRow ; j < endCol ; j++){
-            cout<<array[startRow][j]<<"  ";
+        while(count > 0){
+            //printing first row 
+            for(int i = startcol ; i <= endcol && startrow <= endrow && startcol <= endcol; i++){
+                result.push_back(matrix[startrow][i]);
+                count--;
+            }
+            startrow++;
+
+            //printing last col
+            for(int i = startrow ; i <= endrow && startrow <= endrow && startcol <= endcol; i++){
+                result.push_back(matrix[i][endcol]);
+                count--;
+            }
+            endcol--;
+
+            //printing last row 
+            for(int i = endcol ; i >= startcol && startrow <= endrow && startcol <= endcol; i--){
+                result.push_back(matrix[endrow][i]);
+                count--;
+            }
+            endrow--;
+
+            //printing first col
+            for(int i = endrow ; i >= startrow && startrow <= endrow && startcol <= endcol; i--){
+                result.push_back(matrix[i][startcol]);
+                count--;
+            }
+            startcol++;
         }
-        startRow++;
-
-
-        //Print Ending Col 
-        for(int i = startCol ; i < end ; i++){
-            cout<<array[i][endCol]<<"  ";
-        }
-        
-// }
+        return result;
 }
 
 
 int main(){
-    int New2dArray[][10] = {{1,2,3,4,5} , {14,15,16,17,6} ,{13,20,19, 18,7} , {12,11,10,9,8}};
-    PrintSpiralArray(New2dArray , 4, 5);
+    vector<vector<int>> matrix = {{1,2,3,4} , {5,6,7,8} ,{9,10,11,12}};
+    vector<int>Spiralarray = SpiralArray(matrix);
+
+    for(int i = 0 ; i < Spiralarray.size() ; i++){
+        cout<<Spiralarray[i]<<"  ";
+    }
 }
