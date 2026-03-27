@@ -2,12 +2,14 @@
 using namespace std;
 
 int Fibbonacci(int n){
-    int a = 0 , b = 1;
-    int ans = a + b;
-    // cout<<n<<endl;
-    if(n == 0) return ans;
-    
+    if(n == 0) return 0;
+    if(n == 1) return 1;
+    int ans  = Fibbonacci(n - 1) + Fibbonacci(n - 2);
+    return ans;
 }
 int main(){
-    Fibbonacci(5);
+    int n;
+    cin>>n;
+   int res =  Fibbonacci(n);
+   cout<<res;
 }
