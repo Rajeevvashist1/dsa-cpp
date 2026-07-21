@@ -12,7 +12,7 @@ bool isPossible(vector<vector<int>>& maze, vector<vector<int>>& visited ,int n ,
 void solve(vector<vector<int>>& maze, vector<vector<int>>& visited ,int n , int m , int x, int y , vector<string>& Sol , string path){
     
     visited[x][y] = 1;
-    
+
     if(x == n - 1 && y == m - 1){
         Sol.push_back(path);
         return;
@@ -63,10 +63,6 @@ int main(){
     cout<<"enter number of coloumns in your maze"<<endl;
     cin>>m;
 
-    if(n == 0 && m == 0) {
-        cout<<"No Solution :"<<endl;
-        return 0;
-    }
     
     vector<vector<int>> maze(n, vector<int>(m, 0));
     vector<vector<int>> visited(n, vector<int>(m, 0));
@@ -79,6 +75,10 @@ int main(){
         }
     }
 
+    if(maze[0][0] == 0) {
+        cout<<"No Solution :"<<endl;
+        return 0;
+    }
     vector<string> Sol;
     string path = "";
     //makling a visited matrix and initilaising with 0
