@@ -67,8 +67,35 @@ void DeletionFromhead(Node *&head)
     head = head->next;
 }
 
-void DeleteFromEnd(Node* &head , Node* &tail){
-    Node* temp = null
+void DeleteFromEnd(Node* &head){
+    Node* temp = head;
+    while (temp->next->next != NULL){
+        temp = temp->next;
+    }
+
+    temp->next = NULL;
+}
+
+void DeleteFromPos(Node* &head , int pos){
+    if (pos == 1){
+        DeletionFromhead(head);
+        cout<<"Deleted Element From Head "<<endl;
+        return;
+    }
+    
+    Node* temp = head;
+    int cnt = 1;
+
+    while( cnt < pos - 1){
+        if (temp->next->next != NULL ) temp = temp->next;
+        else {
+            DeleteFromEnd(head);
+            return;
+        }
+        cnt++;
+    }
+    temp->next = temp->next->next;
+
 }
 void Print(Node *&head)
 {
@@ -115,6 +142,17 @@ int main()
 
     // Print(head);
 
-    DeletionFromhead(head);
+    // DeletionFromhead(head);
+    // Print(head);
+
+    cout<<endl;
+
+    // DeleteFromEnd(head);
+//     Print(head);
+
+    DeleteFromPos(head , 2);
     Print(head);
+
+    cout<<"Head data : "<<head->data<<endl;
+    cout<<"Tail data : "<<tail->data<<endl;
 }
